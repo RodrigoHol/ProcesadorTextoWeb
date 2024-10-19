@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>Editor de texto</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="toolbar">
+            <div class="head">
+                <input type="text" placeholder="Filename" value="SinTitulo" id="fileName">
+
+                <select onchange="fileHandler(this.value); this.selectedIndex = 0;">
+                    <option value="" selected hidden disabled>Archivo</option>
+                    <option value="new">Nuevo Archivo</option>
+                    <option value="txt">Guardar como txt</option>
+                    <option value="pdf">Guardar como pdf</option>
+                </select>
+                <select onchange="formatDocument('formatBlock',this.value); this.selectedIndex=0">
+                    <option value="" hidden ="" disabled = "" selected="">Formato</option>
+                    <option value="h1">Titulo 1</option>
+                    <option value="h2">Titulo 2</option>
+                    <option value="h3">Titulo 3</option>
+                    <option value="h4">Titulo 4</option>
+                    <option value="h5">Titulo 5</option>
+                    <option value="h6">Titulo 6</option>
+                    <option value="p">Parrafo</option>
+                </select>
+                <select onchange="formatDocument('fontSize',this.value); this.selectedIndex=0">
+                    <option value="" hidden ="" disabled = "" >Tamño de fuente</option>
+                    <option value="1">Extra pequeña</option>
+                    <option value="2">Pequeña</option>
+                    <option value="3">Regular</option>
+                    <option value="4">Mediana</option>
+                    <option value="5">Grande</option>
+                    <option value="6">Extra grande</option>
+                    <option value="6">Muy grande</option>
+                </select>
+                <div class="color">
+                    <span>Color</span>
+                    <input type="color" oninput="formatDocument('foreColor',this.value); this.value='#000000';">
+                </div>
+                <div class="color">
+                    <span>Fondo</span>
+                    <input type="color" oninput="formatDocument('hiliteColor', this.value); this.value='#000000';">
+                </div>
+            </div>
+            <div class="botton-toolbar">
+                <button onclick="formatDocument('undo')"><i class='bx bx-undo' ></i></button>
+                <button onclick="formatDocument('undo')" ><i class='bx bx-redo' ></i></button>
+                <button onclick="formatDocument('bold')"><i class='bx bx-bold'></i></button>
+                <button onclick="formatDocument('underline')"><i class='bx bx-underline' ></i></button>
+                <button onclick="formatDocument('italic')"><i class='bx bx-italic'></i></button>
+                <button onclick="formatDocument('strikeThrough')"><i class='bx bx-strikethrough' ></i></button>
+                <button onclick="formatDocument('justifyLeft')"><i class='bx bx-align-left' ></i></button>
+                <button onclick="formatDocument('justifyCenter')"><i class='bx bx-align-middle' ></i></button>
+                <button onclick="formatDocument('justifyRight')"><i class='bx bx-align-right' ></i></button>
+                <button onclick="formatDocument('justifyFull')"><i class='bx bx-align-justify'></i></button>
+                <button onclick="formatDocument('insertOrderedList')"><i class='bx bx-list-ol' ></i></button>
+                <button onclick="formatDocument('insertUnorderedList')"><i class='bx bx-list-ul' ></i></button>
+                <button onclick="addLink()"><i class='bx bx-link' ></i></button>
+                <button onclick="formatDocument('unlink')"><i class='bx bx-unlink' ></i></button> 
+                <button id="show-code" data-active="false">&lt;/&gt;</button>
+            </div>
+        </div>
+        <div id="content" contenteditable="true" spellcheck="false">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere voluptates beatae ullam laborum.
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</body>
+</html>
